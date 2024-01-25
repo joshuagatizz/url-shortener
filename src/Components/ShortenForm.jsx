@@ -5,6 +5,7 @@ import TextInputField from "./TextInputField.jsx";
 function ShortenForm() {
   const [longUrl, setLongUrl] = useState('')
   const [key, setKey] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   function changeKey(value) {
     setKey(value)
@@ -23,6 +24,7 @@ function ShortenForm() {
   }
   async function handleClick(e) {
     e.preventDefault()
+    setIsLoading(true)
 
     const url = "https://url-shortener-api-joshuagatizz.vercel.app/api/shorten"
     if (!validateLongUrl(longUrl)) {
@@ -48,6 +50,7 @@ function ShortenForm() {
       alert('failed')
       console.log("error:", e)
     }
+    setIsLoading(false)
   }
 
   return (
@@ -72,12 +75,23 @@ function ShortenForm() {
             <TextInputField
               labelName={"Short URL Key"}
               changeValue={changeKey}
-              placeholder="Key to access the URL"
+              placeholder="URL Key"
             />
           </div>
         </div>
-        <div className="w-fit bg-cyan-600 hover:bg-cyan-700 active:bg-cyan-900 transition duration-300 ease-in-out px-4 py-1 rounded-3xl border border-black">
-          <button onClick={handleClick} className="font-sans text-white font-bold text-2xl">Create!</button>
+        <div
+          className={`${isLoading ? 'bg-gray-400 cursor-not-allowed' : 
+                        'bg-cyan-600 hover:bg-cyan-700 active:bg-cyan-900 cursor-pointer'} 
+                      w-fit cursor-pointer
+                      transition duration-300 ease-in-out
+                      px-4 py-1 rounded-3xl border border-black
+                      font-sans text-white font-bold text-2xl`}>
+          <button
+            onClick={handleClick}
+            disabled={isLoading}
+            >
+            Create!
+          </button>
         </div>
       </form>
     </>

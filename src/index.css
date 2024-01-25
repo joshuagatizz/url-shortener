@@ -7,18 +7,9 @@
   line-height: 2;
   font-weight: 400;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
   color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.main-content {
-  margin: 20px;
 }
