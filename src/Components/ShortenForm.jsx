@@ -73,7 +73,7 @@ function ShortenForm() {
           </div>
           <div className="w-full">
             <TextInputField
-              labelName={"Short URL Key"}
+              labelName={"Key"}
               changeValue={changeKey}
               placeholder="URL Key"
             />
