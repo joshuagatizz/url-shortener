@@ -29,10 +29,12 @@ function ShortenForm() {
     const url = "https://url-shortener-api-joshuagatizz.vercel.app/api/shorten"
     if (!validateLongUrl(longUrl)) {
       alert("invalid url")
+      setIsLoading(false)
       return
     }
     if (!validateKey(key)) {
       alert("invalid key")
+      setIsLoading(false)
       return
     }
     const request = JSON.stringify({
