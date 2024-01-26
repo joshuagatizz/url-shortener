@@ -1,4 +1,4 @@
-import ShortenForm from "./Components/ShortenForm.jsx";
+import ShortenForm from "./components/ShortenForm.jsx";
 import "./index.css"
 
 function App() {
