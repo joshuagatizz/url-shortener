@@ -26,7 +26,7 @@ function ShortenForm() {
     e.preventDefault()
     setIsLoading(true)
 
-    const url = "https://url-shortener-api-joshuagatizz.vercel.app/api/shorten"
+    const url = `${import.meta.env.VITE_REACT_APP_API_URL}/shorten`
     if (!validateLongUrl(longUrl)) {
       alert("invalid url")
       setIsLoading(false)
@@ -70,7 +70,7 @@ function ShortenForm() {
               labelName={"Domain"}
               changeValue={changeKey}
               disabled={true}
-              value="https://url-shortener-joshuagatizz.vercel.app"
+              value={`${import.meta.env.VITE_REACT_APP_URL}`}
             />
           </div>
           <div className="w-full">

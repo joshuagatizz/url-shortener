@@ -12,7 +12,8 @@ function TextInputField({labelName, changeValue, placeholder, value ,disabled=fa
           {labelName}:
         </label>
         <input
-          className="border-2 border-gray-400 rounded-xl w-full px-2 font-sans"
+          className={`${disabled ? 'bg-gray-200': ''} 
+                    border-2 border-gray-400 rounded-xl w-full px-2 font-sans`}
           placeholder={placeholder}
           type="text"
           id={labelName}
