@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import TextInputField from "./TextInputField.jsx";
 
-function ShortenForm() {
+function ShortenForm({changeNotice, changeUrl}) {
   const [longUrl, setLongUrl] = useState('')
   const [key, setKey] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -28,12 +28,14 @@ function ShortenForm() {
 
     const url = `${import.meta.env.VITE_REACT_APP_API_URL}/shorten`
     if (!validateLongUrl(longUrl)) {
-      alert("invalid url")
+      changeNotice("Invalid URL!")
+      changeUrl("")
       setIsLoading(false)
       return
     }
     if (!validateKey(key)) {
-      alert("invalid key")
+      changeNotice("Invalid Key!")
+      changeUrl("")
       setIsLoading(false)
       return
     }
@@ -47,9 +49,13 @@ function ShortenForm() {
           'Content-Type': 'application/json',
         },
       })
-      if (response.status === 200) alert('success!')
+      if (response.status === 200) {
+        changeNotice("Success! access your URL at")
+        changeUrl(`${import.meta.env.VITE_REACT_APP_URL}/${key}`)
+      }
     } catch (e) {
-      alert('failed')
+      changeNotice("Error! The key is already used.")
+      changeUrl("")
       console.log("error:", e)
     }
     setIsLoading(false)
@@ -61,11 +67,11 @@ function ShortenForm() {
         <TextInputField
           labelName={"Long URL"}
           changeValue={changeLongUrl}
-          placeholder="URL to shorten"
+          placeholder="https://example.com"
         />
 
         <div className="flex">
-          <div className="w-96 mr-2">
+          <div className="w-full mr-2">
             <TextInputField
               labelName={"Domain"}
               changeValue={changeKey}
@@ -73,11 +79,11 @@ function ShortenForm() {
               value={`${import.meta.env.VITE_REACT_APP_URL}`}
             />
           </div>
-          <div className="w-full">
+          <div className="w-96">
             <TextInputField
               labelName={"Key"}
               changeValue={changeKey}
-              placeholder="URL Key"
+              placeholder="ex6-mp1e"
             />
           </div>
         </div>
