@@ -22,9 +22,9 @@ function NoticePrompt({ message = "", url = "", copyStatus, changeCopyStatus}) {
         {url !== "" && (
           <button onClick={handleCopy} className={`ml-4 ${copyStatus ? "hover:cursor-default" : ""}`}>
             {copyStatus ? (
-              <img src="/public/checkmark.svg" width="30" height="30" alt="checkmark" />
+              <img src="/checkmark.svg" width="30" height="30" alt="checkmark" />
             ) : (
-              <img width="30" height="30" src="/public/copy.svg" alt="copy"/>
+              <img width="30" height="30" src="/copy.svg" alt="copy"/>
             )}
           </button>
         )}
