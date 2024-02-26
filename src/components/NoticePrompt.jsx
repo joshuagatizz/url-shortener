@@ -1,12 +1,8 @@
-import { useState } from "react";
-
-function NoticePrompt({ message = "", url = "" }) {
-  const [copyStatus, setCopyStatus] = useState(false);
-
+function NoticePrompt({ message = "", url = "", copyStatus, changeCopyStatus}) {
   async function handleCopy(e) {
     e.preventDefault();
     await navigator.clipboard.writeText(url);
-    setCopyStatus(true);
+    changeCopyStatus(true);
   }
 
   return (
@@ -24,16 +20,11 @@ function NoticePrompt({ message = "", url = "" }) {
           {url}
         </a>
         {url !== "" && (
-          <button onClick={handleCopy} className="ml-4">
+          <button onClick={handleCopy} className={`ml-4 ${copyStatus ? "hover:cursor-default" : ""}`}>
             {copyStatus ? (
               <img src="/public/checkmark.svg" width="30" height="30" alt="checkmark" />
             ) : (
-              <img
-                width="30"
-                height="30"
-                src="/public/copy.png"
-                alt="copy--v1"
-              />
+              <img width="30" height="30" src="/public/copy.svg" alt="copy"/>
             )}
           </button>
         )}
