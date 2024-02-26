@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import TextInputField from "./TextInputField.jsx";
 
-function ShortenForm({changeNotice, changeUrl}) {
+function ShortenForm({changeNotice, changeUrl, changeCopyStatus}) {
   const [longUrl, setLongUrl] = useState('')
   const [key, setKey] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -50,6 +50,7 @@ function ShortenForm({changeNotice, changeUrl}) {
         },
       })
       if (response.status === 200) {
+        changeCopyStatus(false)
         changeNotice("Success! access your URL at")
         changeUrl(`${import.meta.env.VITE_REACT_APP_URL}/${key}`)
       }
